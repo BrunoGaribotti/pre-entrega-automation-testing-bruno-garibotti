@@ -19,11 +19,21 @@ Git y GitHub: control de versiones
 
 # Estructura del proyecto
 
-| Archivo | Test | Qué valida |
-|---|---|---|
-| `test_login.py` | `test_login_exitoso` | Login con `standard_user`: redirección a `/inventory.html` y visibilidad del logo "Swag Labs" y del título "Products" |
-| `test_inventory.py` | `test_inventory` | Título de la página, presencia de productos, nombre y precio del primer producto, y visibilidad del menú y del filtro |
-| `test_cart.py` | `test_agregar_producto_al_carrito` | Agregar el primer producto al carrito, que el contador pase a 1 y que el producto aparezca en el carrito |
+```
+pre-entrega-automation-testing-bruno-garibotti/
+├── reports/
+│   └── reporte.html       # Reporte HTML generado por pytest
+├── tests/
+│   ├── test_login.py      # Caso de prueba de login
+│   ├── test_inventory.py  # Casos de prueba del catálogo
+│   └── test_cart.py       # Caso de prueba del carrito
+├── utils/
+│   ├── __init__.py
+│   └── helpers.py         # Función de login reutilizable
+├── pytest.ini             # Configuración de pytest
+├── requirements.txt       # Dependencias del proyecto
+└── README.md
+```
 
 
 # Instalación de dependencias
