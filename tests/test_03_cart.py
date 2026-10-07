@@ -16,17 +16,26 @@ def test_agregar_producto_al_carrito():
 
         # Agregar el primer producto al carrito
         producto = driver.find_element(By.CSS_SELECTOR, ".inventory_item")
-        nombre_producto = producto.find_element(By.CSS_SELECTOR, ".inventory_item_name").text
+        nombre_producto = producto.find_element(
+            By.CSS_SELECTOR, ".inventory_item_name"
+        ).text
         producto.find_element(By.TAG_NAME, "button").click()
 
         # Verificar que el carrito tenga 1 producto (o sea que el número en el ícono del carrito cambie a 1 al agregar el producto)
         numero_carrito = driver.find_element(By.CLASS_NAME, "shopping_cart_badge").text
-        assert numero_carrito == "1", f"Se esperaba que el carrito tuviera 1 producto, pero tiene {numero_carrito}"
-        
+        assert (
+            numero_carrito == "1"
+        ), f"Se esperaba que el carrito tuviera 1 producto, pero tiene {numero_carrito}"
+
         # Navegar al carrito y verificar que el producto agregado figure
         driver.find_element(By.CLASS_NAME, "shopping_cart_link").click()
-        producto_carrito = driver.find_element(By.CLASS_NAME, "cart_item")
-        assert producto_carrito.find_element(By.CLASS_NAME, "cart_item_name").text == nombre_producto, "El producto en el carrito no coincide con el producto agregado"
+        producto_carrito = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.CLASS_NAME, "cart_item"))
+        )
+        assert (
+            producto_carrito.find_element(By.CLASS_NAME, "inventory_item_name").text
+            == nombre_producto
+        ), "El producto en el carrito no coincide con el producto agregado"
 
     finally:
         driver.quit()
