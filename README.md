@@ -24,9 +24,9 @@ pre-entrega-automation-testing-bruno-garibotti/
 ├── reports/
 │   └── reporte.html       # Reporte HTML generado por pytest
 ├── tests/
-│   ├── test_login.py      # Caso de prueba de login
-│   ├── test_inventory.py  # Casos de prueba del catálogo
-│   └── test_cart.py       # Caso de prueba del carrito
+│   ├── test_01_login.py      # Caso de prueba de login
+│   ├── test_02_inventory.py  # Casos de prueba del catálogo
+│   └── test_03_cart.py       # Caso de prueba del carrito
 ├── utils/
 │   ├── __init__.py
 │   └── helpers.py         # Función de login reutilizable
