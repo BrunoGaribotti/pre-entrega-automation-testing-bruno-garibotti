@@ -3,18 +3,16 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+# Importar la función de login para no repetir código
+from utils.helpers import login
+
 
 def test_agregar_producto_al_carrito():
     driver = webdriver.Chrome()
-    
-    # Agregar espera implícita para que el driver espere un tiempo antes de lanzar una excepción si no encuentra un elemento
-    driver.implicitly_wait(5)
 
     try:
         # Login
-        driver.get("https://www.saucedemo.com/")
-        driver.find_element(By.ID, "password").send_keys("secret_sauce")
-        driver.find_element(By.ID, "login-button").click()
+        login(driver)
 
         # Agregar el primer producto al carrito
         producto = driver.find_element(By.CSS_SELECTOR, ".inventory_item")

@@ -1,21 +1,15 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
+# Importar la función de login para no repetir código
+from utils.helpers import login
 
 def test_inventory():
     driver = webdriver.Chrome()
 
     try:
-        driver.get("https://www.saucedemo.com/")
-
-        usuario = driver.find_element(By.ID, "user-name")
-        password = driver.find_element(By.ID, "password")
-        boton_login = driver.find_element(By.ID, "login-button")
-
-        # Ingresar credenciales válidas y cliquear en el botón de Iniciar sesión
-        usuario.send_keys("standard_user")
-        password.send_keys("secret_sauce")
-        boton_login.click()
+        # Login
+        login(driver)
 
         # Verificar que la URL actual sea la página de inventario
         assert "/inventory.html" in driver.current_url
